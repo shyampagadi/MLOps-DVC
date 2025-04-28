@@ -1,0 +1,12 @@
+data_ingestion:
+  test_size: 0.2
+  data_url: https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv
+feature_engineering:
+  max_features: 3000
+model_building:
+  n_estimators: 100
+  random_state: 42
+model_evaluation:
+  metrics:
+    target_accuracy: 0.95
+    target_precision: 0.9

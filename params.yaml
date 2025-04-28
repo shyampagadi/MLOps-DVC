@@ -1,7 +1,7 @@
 # Global parameters for all stages
 data_ingestion:
   test_size: 0.2          # Train/test split ratio
-  data_url: "https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv"
+  data_url: https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv
 
 feature_engineering:
   max_features: 3000      # TF-IDF vectorizer configuration
