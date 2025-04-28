@@ -1,0 +1,95 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 1add09e72c762413af9f4041214872ab
+      size: 500
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 5150d3b1f77e287f19bd4e3a4cbbba60
+      size: 3639
+    params:
+      params.yaml:
+        data_ingestion:
+          test_size: 0.2
+          data_url: https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 1a287d34dc172d9f950c03dae35f7e73.dir
+      size: 484846
+      nfiles: 2
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 1a287d34dc172d9f950c03dae35f7e73.dir
+      size: 484846
+      nfiles: 2
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: b80d35e3d153b90fe873d3939b856032
+      size: 5136
+    outs:
+    - path: data/interim
+      hash: md5
+      md5: d99be5cb2b019d747166f90739fa6d08.dir
+      size: 260073
+      nfiles: 2
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: data/interim
+      hash: md5
+      md5: d99be5cb2b019d747166f90739fa6d08.dir
+      size: 260073
+      nfiles: 2
+    - path: params.yaml
+      hash: md5
+      md5: 1add09e72c762413af9f4041214872ab
+      size: 500
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: cf8448c21ab5f64a81b288de0c331814
+      size: 3910
+    params:
+      params.yaml:
+        feature_engineering:
+          max_features: 3000
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 4d864dffb397e94b37fdf885b3074b62.dir
+      size: 63651634
+      nfiles: 2
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 4d864dffb397e94b37fdf885b3074b62.dir
+      size: 63651634
+      nfiles: 2
+    - path: params.yaml
+      hash: md5
+      md5: 1add09e72c762413af9f4041214872ab
+      size: 500
+    - path: src/model_building.py
+      hash: md5
+      md5: b8211d4fca24abd0f09602108ec58924
+      size: 4423
+    params:
+      params.yaml:
+        model_building:
+          n_estimators: 100
+          random_state: 42
+    outs:
+    - path: models
+      hash: md5
+      md5: 7e033203ea403e69be304bc7eff5ab36.dir
+      size: 7882834
+      nfiles: 1
