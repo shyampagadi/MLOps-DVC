@@ -4,10 +4,10 @@ data_ingestion:
   data_url: https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv
 
 feature_engineering:
-  max_features: 3000      # TF-IDF vectorizer configuration
+  max_features: 5000      # TF-IDF vectorizer configuration
 
 model_building:
-  n_estimators: 100       # RandomForest hyperparameters
+  n_estimators: 200       # RandomForest hyperparameters
   random_state: 42
 
 model_evaluation:
